@@ -31,6 +31,12 @@ class Todo {
 			);
 		}
 	}
+	get finishedTodos() {
+		return this.todos.filter((todo) => todo.completed);
+	}
+	get unfinishedTodos() {
+		return this.todos.filter((todo) => !todo.completed);
+	}
 }
 
 export default new Todo();

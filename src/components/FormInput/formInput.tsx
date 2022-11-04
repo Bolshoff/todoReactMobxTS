@@ -3,6 +3,8 @@ import './formInput.scss';
 import { observer } from 'mobx-react-lite';
 import todo from '../../store/todo';
 import { v4 as uuid } from 'uuid';
+import { Simulate } from 'react-dom/test-utils';
+import input = Simulate.input;
 
 const FormInput = () => {
 	const [inputValue, setInputValue] = useState('');
@@ -14,24 +16,26 @@ const FormInput = () => {
 	};
 
 	return (
-		<form
-			className="input-form"
-			onSubmit={(e: React.SyntheticEvent) => {
-				e.preventDefault();
-				todo.addTodo(todoItem);
-				setInputValue('');
-			}}
-		>
-			<input
-				type="text"
-				className="input-form__input"
-				value={inputValue}
-				onChange={(e: ChangeEvent<HTMLInputElement>) => {
-					setInputValue(e.target.value);
+		<>
+			<form
+				className="input-form"
+				onSubmit={(e: React.SyntheticEvent) => {
+					e.preventDefault();
+					todo.addTodo(todoItem);
+					setInputValue('');
 				}}
-			/>
-			<input type="submit" className="input-form__submit-button" />
-		</form>
+			>
+				<input
+					type="text"
+					className="input-form__input"
+					value={inputValue}
+					onChange={(e: ChangeEvent<HTMLInputElement>) => {
+						setInputValue(e.target.value);
+					}}
+				/>
+				<input type="submit" className="input-form__submit-button" value="+" />
+			</form>
+		</>
 	);
 };
 
