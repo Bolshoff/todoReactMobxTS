@@ -7,18 +7,7 @@ export interface ITodos {
 }
 
 class Todo {
-	todos: ITodos[] | undefined = [
-		// {
-		// 	id: 'dgfg',
-		// 	title: 'jgjlfjljgdlgdlgjd',
-		// 	completed: false,
-		// },
-		// {
-		// 	id: 'gkhgk',
-		// 	title: 'j13546343yjhh',
-		// 	completed: false,
-		// },
-	];
+	todos: ITodos[] | undefined = [];
 	constructor() {
 		makeAutoObservable(this);
 	}
@@ -37,8 +26,8 @@ class Todo {
 
 	completeTodo(id: string) {
 		if (this.todos) {
-			this.todos.map((todo) =>
-				todo.id === id ? { ...todo, completed: !todo.completed } : todo
+			this.todos = this.todos.map((todo) =>
+				todo.id === id ? { ...todo, completed: !todo.completed } : todo,
 			);
 		}
 	}
